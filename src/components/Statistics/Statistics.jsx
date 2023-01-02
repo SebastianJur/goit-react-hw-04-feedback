@@ -1,0 +1,40 @@
+import { Component } from 'react';
+import css from './Statistics.module.css';
+import Notification from '../Notification/Notification';
+import PropTypes from 'prop-types';
+
+class Statistics extends Component {
+  render() {
+    const { good, neutral, bad, total, positivePercentage } = this.props;
+
+    return (
+      <>
+        <h2 className={css.title}>Statistics</h2>
+
+        {total === 0 ? (
+          <Notification message="No feedback given" />
+        ) : (
+          <ul className={css.list}>
+            <li className={css.item}>Good: {good}</li>
+            <li className={css.item}>Neutral: {neutral}</li>
+            <li className={css.item}>Bad: {bad}</li>
+            <li className={css.item}>Total: {total}</li>
+            <li className={css.item}>
+              Positive feedback: {positivePercentage}%
+            </li>
+          </ul>
+        )}
+      </>
+    );
+  }
+}
+
+Statistics.propTypes = {
+  good: PropTypes.number,
+  neutral: PropTypes.number,
+  bad: PropTypes.number,
+  total: PropTypes.number,
+  positivePercentage: PropTypes.number,
+};
+
+export default Statistics;
